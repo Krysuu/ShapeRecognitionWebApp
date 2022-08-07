@@ -129,14 +129,14 @@ public class StandardView extends VerticalLayout {
 
     private void updatePredictionLayout(ModelPrediction modelPrediction) {
         if (modelPrediction == null) {
-            var ceownikImg = componentUtil.getImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", 0d, false);
-            var dwuteownikImg = componentUtil.getImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", 0d, false);
-            var katownikImg = componentUtil.getImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", 0d, false);
-            var kwadratowyImg = componentUtil.getImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", 0d, false);
-            var okraglyImg = componentUtil.getImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", 0d, false);
-            var plaskownikImg = componentUtil.getImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", 0d, false);
-            var profilImg = componentUtil.getImageWithTitleAndPercentage("/images/profil.png", "Profil", 0d, false);
-            var ruraImg = componentUtil.getImageWithTitleAndPercentage("/images/rura.png", "Rura", 0d, false);
+            var ceownikImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", 0d, false);
+            var dwuteownikImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", 0d, false);
+            var katownikImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", 0d, false);
+            var kwadratowyImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", 0d, false);
+            var okraglyImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", 0d, false);
+            var plaskownikImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", 0d, false);
+            var profilImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/profil.png", "Profil", 0d, false);
+            var ruraImg = componentUtil.getExampleImageWithTitleAndPercentage("/images/rura.png", "Rura", 0d, false);
 
             var vertical1 = new VerticalLayout(ceownikImg, dwuteownikImg);
             var vertical2 = new VerticalLayout(katownikImg, plaskownikImg);
@@ -152,21 +152,21 @@ public class StandardView extends VerticalLayout {
                     .map(prediction -> {
                         switch (prediction.getLabel()) {
                             case "ceownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", prediction.getScore(), true);
                             case "dwuteownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", prediction.getScore(), true);
                             case "katownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", prediction.getScore(), true);
                             case "kwadratowy":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", prediction.getScore(), true);
                             case "okragly":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", prediction.getScore(), true);
                             case "plaskownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", prediction.getScore(), true);
                             case "profil":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/profil.png", "Profil", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/profil.png", "Profil", prediction.getScore(), true);
                             case "rura":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/rura.png", "Rura", prediction.getScore(), true);
+                                return componentUtil.getExampleImageWithTitleAndPercentage("/images/rura.png", "Rura", prediction.getScore(), true);
                             default:
                                 return null;
                         }

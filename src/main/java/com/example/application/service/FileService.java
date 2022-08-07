@@ -3,6 +3,7 @@ package com.example.application.service;
 import lombok.AllArgsConstructor;
 import org.apache.commons.compress.utils.IOUtils;
 import org.imgscalr.Scalr;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -12,16 +13,20 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Service
-@AllArgsConstructor
 public class FileService {
     private static final String PREFIX = "predict";
     private static final String SUFFIX = ".tmp";
-    private static final int TARGET_WIDTH = 299;
-    private static final int TARGET_HEIGHT = 299;
+    private static final int TARGET_WIDTH = 224;
+    private static final int TARGET_HEIGHT = 224;
+
+    @Value("#{new Boolean('${model.resize-images}')}")
+    private Boolean resizeImages;
 
     public File prepareFileForPrediction(InputStream inputStream) throws IOException {
         var file = inputStreamToFile(inputStream);
-        //resizeFileImage(file);
+        if (resizeImages) {
+            resizeFileImage(file);
+        }
         return file;
     }
 
