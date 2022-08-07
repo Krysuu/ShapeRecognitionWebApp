@@ -3,7 +3,6 @@ package com.example.application.views;
 
 import com.example.application.components.appnav.AppNav;
 import com.example.application.components.appnav.AppNavItem;
-import com.example.application.views.about.AboutView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;

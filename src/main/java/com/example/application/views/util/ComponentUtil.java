@@ -10,17 +10,16 @@ import com.vaadin.flow.server.StreamResource;
 
 public class ComponentUtil {
 
-    public VerticalLayout getImageWithTitleAndPercentage(String imagePath, String title, Double score) {
+    public VerticalLayout getImageWithTitleAndPercentage(String imagePath, String title, Double score, boolean big) {
         var imageWithTitle = new VerticalLayout();
 
         var imageResource = new StreamResource(title,
                 () -> getClass().getResourceAsStream(imagePath));
         var image = new Image(imageResource, title);
-        image.setMaxHeight(180, Unit.PIXELS);
-        image.setMaxWidth(180, Unit.PIXELS);
+
         image.getStyle().set("border", "2px solid #1C6EA4");
         image.getStyle().set("border-radius", "6px");
-
+        image.setSizeFull();
 
         ProgressBar progressBar = new ProgressBar();
         progressBar.setHeight(10, Unit.PIXELS);
@@ -34,6 +33,12 @@ public class ComponentUtil {
         imageWithTitle.setSpacing(false);
         imageWithTitle.setMargin(false);
         imageWithTitle.setAlignItems(FlexComponent.Alignment.CENTER);
+
+        if (big) {
+            imageWithTitle.setWidth("48%");
+        } else {
+            imageWithTitle.setWidth("100%");
+        }
         return imageWithTitle;
     }
 }

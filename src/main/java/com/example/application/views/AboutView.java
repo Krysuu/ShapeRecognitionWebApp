@@ -1,4 +1,4 @@
-package com.example.application.views.about;
+package com.example.application.views;
 
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.html.H2;

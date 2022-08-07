@@ -71,6 +71,7 @@ public class StandardView extends VerticalLayout {
 
         add(topLayout, predictionGrid);
         topLayout.setHeight("70%");
+        topLayout.setWidth("100%");
         predictionGrid.setHeight("30%");
         setHeight("100%");
     }
@@ -128,14 +129,14 @@ public class StandardView extends VerticalLayout {
 
     private void updatePredictionLayout(ModelPrediction modelPrediction) {
         if (modelPrediction == null) {
-            var ceownikImg = componentUtil.getImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", 0d);
-            var dwuteownikImg = componentUtil.getImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", 0d);
-            var katownikImg = componentUtil.getImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", 0d);
-            var kwadratowyImg = componentUtil.getImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", 0d);
-            var okraglyImg = componentUtil.getImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", 0d);
-            var plaskownikImg = componentUtil.getImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", 0d);
-            var profilImg = componentUtil.getImageWithTitleAndPercentage("/images/profil.png", "Profil", 0d);
-            var ruraImg = componentUtil.getImageWithTitleAndPercentage("/images/rura.png", "Rura", 0d);
+            var ceownikImg = componentUtil.getImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", 0d, false);
+            var dwuteownikImg = componentUtil.getImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", 0d, false);
+            var katownikImg = componentUtil.getImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", 0d, false);
+            var kwadratowyImg = componentUtil.getImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", 0d, false);
+            var okraglyImg = componentUtil.getImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", 0d, false);
+            var plaskownikImg = componentUtil.getImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", 0d, false);
+            var profilImg = componentUtil.getImageWithTitleAndPercentage("/images/profil.png", "Profil", 0d, false);
+            var ruraImg = componentUtil.getImageWithTitleAndPercentage("/images/rura.png", "Rura", 0d, false);
 
             var vertical1 = new VerticalLayout(ceownikImg, dwuteownikImg);
             var vertical2 = new VerticalLayout(katownikImg, plaskownikImg);
@@ -146,35 +147,32 @@ public class StandardView extends VerticalLayout {
             predictionLayout.add(vertical1, vertical2, vertical3, vertical4);
         } else {
             var components = modelPrediction.getPredictions().stream()
+                    .limit(2)
+                    .filter(prediction -> prediction.getScore() >= 0.1)
                     .map(prediction -> {
                         switch (prediction.getLabel()) {
                             case "ceownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/ceownik.png", "Ceownik", prediction.getScore(), true);
                             case "dwuteownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/dwuteownik.png", "Dwuteownik", prediction.getScore(), true);
                             case "katownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/katownik.png", "Kątownik", prediction.getScore(), true);
                             case "kwadratowy":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/kwadratowy.png", "Kwadratowy", prediction.getScore(), true);
                             case "okragly":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/okragly.png", "Okrągły", prediction.getScore(), true);
                             case "plaskownik":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/plaskownik.png", "Płaskownik", prediction.getScore(), true);
                             case "profil":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/profil.png", "Profil", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/profil.png", "Profil", prediction.getScore(), true);
                             case "rura":
-                                return componentUtil.getImageWithTitleAndPercentage("/images/rura.png", "Rura", prediction.getScore());
+                                return componentUtil.getImageWithTitleAndPercentage("/images/rura.png", "Rura", prediction.getScore(), true);
                             default:
                                 return null;
                         }
                     }).collect(Collectors.toList());
-
-            var vertical1 = new VerticalLayout(components.get(0), components.get(4));
-            var vertical2 = new VerticalLayout(components.get(1), components.get(5));
-            var vertical3 = new VerticalLayout(components.get(2), components.get(6));
-            var vertical4 = new VerticalLayout(components.get(3), components.get(7));
             predictionLayout.removeAll();
-            predictionLayout.add(vertical1, vertical2, vertical3, vertical4);
+            components.forEach(predictionLayout::add);
         }
     }
 
